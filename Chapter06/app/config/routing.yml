@@ -1,0 +1,27 @@
+foggyline_payment:
+    resource: "@FoggylinePaymentBundle/Resources/config/routing.xml"
+    prefix:   /payment/
+
+foggyline_customer_customer:
+    resource: "@FoggylineCustomerBundle/Controller/CustomerController.php"
+    type:     annotation
+
+foggyline_customer:
+    resource: "@FoggylineCustomerBundle/Resources/config/routing.xml"
+    prefix:   /customer/
+
+foggyline_catalog_product:
+    resource: "@FoggylineCatalogBundle/Controller/ProductController.php"
+    type:     annotation
+
+foggyline_catalog_category:
+    resource: "@FoggylineCatalogBundle/Controller/CategoryController.php"
+    type:     annotation
+
+foggyline_catalog:
+    resource: "@FoggylineCatalogBundle/Resources/config/routing.xml"
+    prefix:   /catalog/
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

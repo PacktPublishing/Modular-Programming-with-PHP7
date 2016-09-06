@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if products_bestsellers %}
+        <h2 class="text-center">Best Sellers</h2>
+        <div class="row products_bestsellers text-center small-up-1 medium-up-3 large-up-5" data-equalizer
+             data-equalize-by-row="true">
+            {% for product in products_bestsellers.getItems() %}
+                <div class="column product">
+                    <img src="{{ asset(product.img) }}" alt="missing image"/>
+                    <a href="{{ product.path }}">{{ product.name }}</a>
+                    <div>${{ product.price }}</div>
+                    <div><a class="small button" href="{{ product.add_to_cart_url }}">Add to Cart</a></div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if products_onsale %}
+        <h2 class="text-center">On Sale</h2>
+        <div class="row products_onsale text-center small-up-1 medium-up-3 large-up-5" data-equalizer
+             data-equalize-by-row="true">
+            {% for product in products_onsale.getItems() %}
+                <div class="column product">
+                    <img src="{{ asset('uploads/foggyline_catalog_images/' ~ product.image) }}" alt="missing image"/>
+                    <a href="{{ product.path }}">{{ product.name }}</a>
+                    <div>${{ product.price }}</div>
+                    <div><a class="small button" href="{{ add_to_cart_url.getAddToCartUrl(product.id) }}">Add to Cart</a></div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

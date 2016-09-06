@@ -1,0 +1,92 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/foundation.css') }}"/>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="title-bar" data-responsive-toggle="appMenu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle></button>
+    <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="appMenu">
+    <div class="top-bar-left">
+        {# category_menu is global twig var filled from service, and later overriden by another module service #}
+        <ul class="menu">
+            <li><a href="{{ path('homepage') }}">HOME</a></li>
+            {% block category_menu %}
+            {% for link in category_menu.getItems() %}
+                <li><a href="{{ link.path }}">{{ link.label }}</li></a>
+            {% endfor %}
+            {% endblock %}
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            {# customer_menu is global twig var filled from service, and later overriden by another module service #}
+            {% block customer_menu %}
+                {% for link in customer_menu.getItems() %}
+                    <li><a href="{{ link.path }}">{{ link.label }}</li></a>
+                {% endfor %}
+            {% endblock %}
+            {# checkout_menu is global twig var filled from service, and later overriden by another module service #}
+            {% block checkout_menu %}
+                {% for link in checkout_menu.getItems() %}
+                    <li><a href="{{ link.path }}">{{ link.label }}</li></a>
+                {% endfor %}
+            {% endblock %}
+        </ul>
+    </div>
+</div>
+<!-- /Navigation -->
+
+<div class="row column">
+    {% for flash_message in app.session.flashBag.get('alert') %}
+        <div class="alert callout">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {% for flash_message in app.session.flashBag.get('warning') %}
+        <div class="warning callout">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {% for flash_message in app.session.flashBag.get('success') %}
+        <div class="success callout">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+</div>
+
+<div class="row column">
+    {% block body %}{% endblock %}
+</div>
+
+<div class="row column footer">
+    <div class="menu-centered">
+        <ul class="menu">
+            <li><a href="{{ path('about') }}">About Us</a></li>
+            <li><a href="{{ path('customer_service') }}">Customer Service</a></li>
+            <li><a href="{{ path('privacy_cookie') }}">Privacy and Cookie Policy</a></li>
+            <li><a href="{{ path('orders_returns') }}">Orders and Returns</a></li>
+            <li><a href="{{ path('contact') }}">Contact Us</a></li>
+        </ul>
+    </div>
+</div>
+
+<script src="{{ asset('js/vendor/jquery.js') }}"></script>
+<script src="{{ asset('js/vendor/what-input.js') }}"></script>
+<script src="{{ asset('js/vendor/foundation.js') }}"></script>
+<script>
+    $(document).foundation();
+</script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

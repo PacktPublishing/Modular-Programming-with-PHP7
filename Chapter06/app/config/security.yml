@@ -1,0 +1,76 @@
+security:
+
+    providers:
+        in_memory:
+            memory:
+                users:
+                    alice:
+                        # password: meQGmPFCP5Ul
+                        password: $2y$12$wvdE1Fjb29hgY6//g/khuedLq3wQOuLbZ/tYqzxI9PfIfBF24fEfa
+                        roles: 'ROLE_USER'
+                    john:
+                        # password: 1L6lllW9zXg0
+                        password: $2y$12$DFozWehwPkp14sVXr7.IbusW8ugvmZs9dQMExlggtyEa/TxZUStnO
+                        roles: 'ROLE_ADMIN'
+                    # php bin/console security:encode-password
+
+        # Add this #1
+        foggyline_customer:
+            entity:
+                class: FoggylineCustomerBundle:Customer
+#                class: Foggyline\CustomerBundle\Entity\Customer
+                property: username
+
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
+        # Add this #2
+        Foggyline\CustomerBundle\Entity\Customer:
+            algorithm: bcrypt
+            cost: 12
+
+    firewalls:
+    
+        guard_new_edit:
+            pattern: /(new)|(edit)
+            methods: [GET, POST]
+            anonymous: ~
+            http_basic: ~
+
+        guard_delete:
+            pattern: /
+            methods: [DELETE]
+            anonymous: ~
+            http_basic: ~    
+
+        # Add this #3
+        foggyline_customer:
+            anonymous: ~
+            provider: foggyline_customer
+            form_login:
+                login_path: foggyline_customer_login
+                check_path: foggyline_customer_login
+                default_target_path: customer_account
+            logout:
+                path:   /customer/logout
+                target: /
+
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+    access_control:
+        # exclude /login path from firewall
+#        - { path: customer/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: customer/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: customer/forgotten_password, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: customer/account, roles: ROLE_USER }
+#        - { path: customer/logout, roles: ROLE_USER }
+#        - { path: customer/, roles: ROLE_ADMIN }
+#        - { path: customer/, roles: ROLE_ADMIN } # Handle all customer/ routes by checking within the controller
+        # protect any possible auto-generated CRUD actions from everyone's access
+        - { path: /new, roles: ROLE_ADMIN }
+        - { path: /edit, roles: ROLE_ADMIN }
+        - { path: /, roles: ROLE_ADMIN, methods: [DELETE] }
