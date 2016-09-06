@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Checkout</h1>
+    <div class="row">
+        <div class="large-8 columns">
+            <form action="{{ path('foggyline_sales_checkout_process') }}" method="post" id="payment_form">
+                <fieldset>
+                    <legend>Payment Methods</legend>
+                    <ul>
+                        {% for method in payment_methods %}
+                            {% set payment = method.getInfo()['payment'] %}
+                            <li>
+                                <input type="radio" name="payment_method"
+                                       value="{{ payment.code }}"> {{ payment.title }}
+
+                                {% if payment['form'] is defined %}
+                                    <div id="{{ payment.code }}_form">
+                                        {{ form_widget(payment['form']) }}
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </fieldset>
+            </form>
+        </div>
+        <div class="large-4 columns">
+            {% include 'FoggylineSalesBundle:default:checkout/order_sumarry.html.twig' %}
+            <div>Cart Subtotal: {{ cart_subtotal }}</div>
+            <div>{{ delivery_label }}: {{ delivery_subtotal }}</div>
+            <div>Order Total: {{ order_total }}</div>
+            <div><a id="payment_form_submit" href="#" class="button">Place Order</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var form = document.getElementById('payment_form');
+        document.getElementById('payment_form_submit').addEventListener('click', function () {
+            form.submit();
+        });
+    </script>
+{% endblock %}

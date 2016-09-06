@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Card list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cardtype</th>
+                <th>Cardnumber</th>
+                <th>Expirydate</th>
+                <th>Securitycode</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for card in cards %}
+            <tr>
+                <td><a href="{{ path('card_show', { 'id': card.id }) }}">{{ card.id }}</a></td>
+                <td>{{ card.cardType }}</td>
+                <td>{{ card.cardNumber }}</td>
+                <td>{% if card.expiryDate %}{{ card.expiryDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ card.securityCode }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('card_show', { 'id': card.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('card_edit', { 'id': card.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('card_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

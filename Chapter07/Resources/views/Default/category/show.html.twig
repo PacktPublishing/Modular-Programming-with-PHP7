@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="small-12 large-12 columns text-center">
+            <h1>{{ category.title }}</h1>
+            <p>{{ category.description }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <img src="{{ asset('uploads/foggyline_catalog_images/' ~ category.image) }}"/>
+    </div>
+
+    {% set products = category.getProducts() %}
+    {% if products %}
+        <div class="row products_onsale text-center small-up-1 medium-up-3 large-up-5" data-equalizer
+             data-equalize-by-row="true">
+            {% for product in products %}
+                <div class="column product">
+                    <img src="{{ asset('uploads/foggyline_catalog_images/' ~ product.image) }}" alt="missing image"/>
+                    <a href="{{ path('product_show', {'id': product.id}) }}">{{ product.title }}</a>
+
+                    <div>${{ product.price }}</div>
+                    <div><a class="small button" href="{{ add_to_cart_url.getAddToCartUrl(product.id) }}">Add to Cart</a></div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="row">
+            <p>There are no products assigned to this category.</p>
+        </div>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <ul>
+            <li>
+                <a href="{{ path('category_edit', { 'id': category.id }) }}">Edit</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SalesOrder</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ salesOrder.id }}</td>
+            </tr>
+            <tr>
+                <th>Itemsprice</th>
+                <td>{{ salesOrder.itemsPrice }}</td>
+            </tr>
+            <tr>
+                <th>Shipmentprice</th>
+                <td>{{ salesOrder.shipmentPrice }}</td>
+            </tr>
+            <tr>
+                <th>Totalprice</th>
+                <td>{{ salesOrder.totalPrice }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ salesOrder.status }}</td>
+            </tr>
+            <tr>
+                <th>Paymentmethod</th>
+                <td>{{ salesOrder.paymentMethod }}</td>
+            </tr>
+            <tr>
+                <th>Shipmentmethod</th>
+                <td>{{ salesOrder.shipmentMethod }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if salesOrder.createdAt %}{{ salesOrder.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedat</th>
+                <td>{% if salesOrder.modifiedAt %}{{ salesOrder.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Customeremail</th>
+                <td>{{ salesOrder.customerEmail }}</td>
+            </tr>
+            <tr>
+                <th>Customerfirstname</th>
+                <td>{{ salesOrder.customerFirstName }}</td>
+            </tr>
+            <tr>
+                <th>Customerlastname</th>
+                <td>{{ salesOrder.customerLastName }}</td>
+            </tr>
+            <tr>
+                <th>Addressfirstname</th>
+                <td>{{ salesOrder.addressFirstName }}</td>
+            </tr>
+            <tr>
+                <th>Addresslastname</th>
+                <td>{{ salesOrder.addressLastName }}</td>
+            </tr>
+            <tr>
+                <th>Addresscountry</th>
+                <td>{{ salesOrder.addressCountry }}</td>
+            </tr>
+            <tr>
+                <th>Addressstate</th>
+                <td>{{ salesOrder.addressState }}</td>
+            </tr>
+            <tr>
+                <th>Addresscity</th>
+                <td>{{ salesOrder.addressCity }}</td>
+            </tr>
+            <tr>
+                <th>Addresspostcode</th>
+                <td>{{ salesOrder.addressPostcode }}</td>
+            </tr>
+            <tr>
+                <th>Addressstreet</th>
+                <td>{{ salesOrder.addressStreet }}</td>
+            </tr>
+            <tr>
+                <th>Addresstelephone</th>
+                <td>{{ salesOrder.addressTelephone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('salesorder_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('salesorder_edit', { 'id': salesOrder.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

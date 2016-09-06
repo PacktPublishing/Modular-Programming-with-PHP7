@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DynamicRate list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DynamicRatetype</th>
+                <th>DynamicRatenumber</th>
+                <th>Expirydate</th>
+                <th>Securitycode</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dynamicrate in dynamicrates %}
+            <tr>
+                <td><a href="{{ path('dynamic_rate_show', { 'id': dynamicrate.id }) }}">{{ dynamicrate.id }}</a></td>
+                <td>{{ dynamicrate.dynamicrateType }}</td>
+                <td>{{ dynamicrate.dynamicrateNumber }}</td>
+                <td>{% if dynamicrate.expiryDate %}{{ dynamicrate.expiryDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ dynamicrate.securityCode }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('dynamic_rate_show', { 'id': dynamicrate.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('dynamic_rate_edit', { 'id': dynamicrate.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dynamic_rate_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

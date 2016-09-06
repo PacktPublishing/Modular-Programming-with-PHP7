@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="small-12 large-6 columns">
+            <img class="thumbnail" src="{{ asset('uploads/foggyline_catalog_images/' ~ product.image) }}"/>
+        </div>
+        <div class="small-12 large-6 columns">
+            <h1>{{ product.title }}</h1>
+            <div>SKU: {{ product.sku }}</div>
+            {% if product.qty %}
+                <div>IN STOCK</div>
+            {% else %}
+                <div>OUT OF STOCK</div>
+            {% endif %}
+            <div>$ {{ product.price }}</div>
+            <form action="{{ add_to_cart_url.getAddToCartUrl(product.id) }}" method="get">
+                <div class="input-group">
+                    <span class="input-group-label">Qty</span>
+                    <input class="input-group-field" type="number">
+                    <div class="input-group-button">
+                        <input type="submit" class="button" value="Add to Cart">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <p>{{ product.description }}</p>
+    </div>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <ul>
+            <li>
+                <a href="{{ path('product_edit', { 'id': product.id }) }}">Edit</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}

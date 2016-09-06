@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SalesOrder list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Itemsprice</th>
+            <th>Shipmentprice</th>
+            <th>Totalprice</th>
+            <th>Status</th>
+            <th>Paymentmethod</th>
+            <th>Shipmentmethod</th>
+            <th>Createdat</th>
+            <th>Modifiedat</th>
+            <th>Customeremail</th>
+            <th>Customerfirstname</th>
+            <th>Customerlastname</th>
+            <th>Addressfirstname</th>
+            <th>Addresslastname</th>
+            <th>Addresscountry</th>
+            <th>Addressstate</th>
+            <th>Addresscity</th>
+            <th>Addresspostcode</th>
+            <th>Addressstreet</th>
+            <th>Addresstelephone</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for salesOrder in salesOrders %}
+            <tr>
+                <td><a href="{{ path('salesorder_show', { 'id': salesOrder.id }) }}">{{ salesOrder.id }}</a></td>
+                <td>{{ salesOrder.itemsPrice }}</td>
+                <td>{{ salesOrder.shipmentPrice }}</td>
+                <td>{{ salesOrder.totalPrice }}</td>
+                <td>{{ salesOrder.status }}</td>
+                <td>{{ salesOrder.paymentMethod }}</td>
+                <td>{{ salesOrder.shipmentMethod }}</td>
+                <td>{% if salesOrder.createdAt %}{{ salesOrder.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if salesOrder.modifiedAt %}{{ salesOrder.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ salesOrder.customerEmail }}</td>
+                <td>{{ salesOrder.customerFirstName }}</td>
+                <td>{{ salesOrder.customerLastName }}</td>
+                <td>{{ salesOrder.addressFirstName }}</td>
+                <td>{{ salesOrder.addressLastName }}</td>
+                <td>{{ salesOrder.addressCountry }}</td>
+                <td>{{ salesOrder.addressState }}</td>
+                <td>{{ salesOrder.addressCity }}</td>
+                <td>{{ salesOrder.addressPostcode }}</td>
+                <td>{{ salesOrder.addressStreet }}</td>
+                <td>{{ salesOrder.addressTelephone }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('salesorder_show', { 'id': salesOrder.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('salesorder_edit', { 'id': salesOrder.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('salesorder_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <services>
+        <service id="foggyline_shipment.dynamicrate_shipment" class="Foggyline\ShipmentBundle\Service\DynamicRateShipment">
+            <argument type="service" id="router"/>
+            <tag name="shipment_method"/>
+        </service>
+
+        <service id="foggyline_shipment.flat_rate" class="Foggyline\ShipmentBundle\Service\FlatRateShipment">
+            <argument type="service" id="router"/>
+            <tag name="shipment_method"/>
+        </service>
+    </services>
+
+
+</container>

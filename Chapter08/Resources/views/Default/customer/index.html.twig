@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Customer list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Company</th>
+                <th>Phonenumber</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Postcode</th>
+                <th>Street</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+            <tr>
+                <td><a href="{{ path('customer_show', { 'id': customer.id }) }}">{{ customer.id }}</a></td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.password }}</td>
+                <td>{{ customer.firstName }}</td>
+                <td>{{ customer.lastName }}</td>
+                <td>{{ customer.company }}</td>
+                <td>{{ customer.phoneNumber }}</td>
+                <td>{{ customer.country }}</td>
+                <td>{{ customer.state }}</td>
+                <td>{{ customer.city }}</td>
+                <td>{{ customer.postcode }}</td>
+                <td>{{ customer.street }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('customer_show', { 'id': customer.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('customer_edit', { 'id': customer.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('customer_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

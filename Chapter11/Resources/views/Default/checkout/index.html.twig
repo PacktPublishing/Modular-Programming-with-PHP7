@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Checkout</h1>
+
+    <div class="row">
+        <div class="large-8 columns">
+            <form action="{{ path('foggyline_sales_checkout_payment') }}" method="post" id="shipping_form">
+                <fieldset>
+                    <legend>Shipping Address</legend>
+                    {{ form_widget(shipping_address_form) }}
+                </fieldset>
+
+                <fieldset>
+                    <legend>Shipping Methods</legend>
+                    <ul>
+                        {% for method in shipping_methods %}
+                            {% set shipment = method.getInfo('street', 'city', 'country', 'postcode', 'amount', 'qty')['shipment'] %}
+                            <li>
+                                <label>{{ shipment.title }}</label>
+                                <ul>
+                                    {% for delivery_option in shipment.delivery_options %}
+                                        <li>
+                                            <input type="radio" name="shipment_method"
+                                                   value="{{ shipment.code }}____{{ delivery_option.code }}____{{ delivery_option.price }}"> {{ delivery_option.title }}
+                                            ({{ delivery_option.price }})
+                                            <br>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </fieldset>
+            </form>
+        </div>
+        <div class="large-4 columns">
+            {% include 'FoggylineSalesBundle:default:checkout/order_sumarry.html.twig' %}
+            <div>Cart Subtotal: {{ cart_subtotal }}</div>
+            <div><a id="shipping_form_submit" href="#" class="button">Next</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var form = document.getElementById('shipping_form');
+        document.getElementById('shipping_form_submit').addEventListener('click', function () {
+            form.submit();
+        });
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Shopping Cart</h1>
+    <div class="row">
+        <div class="large-8 columns">
+            <form action="{{ path('foggyline_sales_cart_update') }}" method="post">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>{{ item.product.title }}</td>
+                            <td>{{ item.unitPrice }}</td>
+                            <td><input name="item[{{ item.id }}]" value="{{ item.qty }}"/></td>
+                            <td>{{ item.qty * item.unitPrice }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="button">Update Cart</button>
+            </form>
+        </div>
+        <div class="large-4 columns">
+            <div>Order Total: {{ total }}</div>
+            <div><a href="{{ path('foggyline_sales_checkout') }}" class="button">Go to Checkout</a></div>
+        </div>
+    </div>
+{% endblock %}
+

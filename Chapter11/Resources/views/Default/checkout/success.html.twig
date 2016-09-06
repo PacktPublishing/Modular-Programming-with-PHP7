@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Checkout Success</h1>
+    <div class="row">
+        <p>Thank you for placing your order #{{ last_order }}.</p>
+        <p>You can see order details <a href="{{ path('customer_account') }}">here</a>.</p>
+    </div>
+{% endblock %}

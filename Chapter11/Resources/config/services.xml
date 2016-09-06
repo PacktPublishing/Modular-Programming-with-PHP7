@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="foggyline_sales.add_to_cart_url" class="Foggyline\SalesBundle\Service\AddToCartUrl">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="router"/>
+        </service>
+
+        <service id="foggyline_sales.checkout_menu" class="Foggyline\SalesBundle\Service\CheckoutMenu">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="security.token_storage"/>
+            <argument type="service" id="router"/>
+        </service>
+
+        <service id="foggyline_sales.shipment" class="Foggyline\SalesBundle\Service\Shipment">
+            <argument type="service" id="service_container"/>
+        </service>
+
+        <service id="foggyline_sales.payment" class="Foggyline\SalesBundle\Service\Payment">
+            <argument type="service" id="service_container"/>
+        </service>
+
+        <service id="foggyline_sales.customer_orders" class="Foggyline\SalesBundle\Service\CustomerOrders">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="security.token_storage"/>
+            <argument type="service" id="router"/>
+        </service>
+
+
+        <service id="foggyline_sales.bestsellers" class="Foggyline\SalesBundle\Service\BestSellers">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="router"/>
+        </service>
+
+    </services>
+
+</container>

@@ -1,0 +1,11 @@
+<h3>Order Summary</h3>
+
+<table>
+    <tbody>
+    {% for item in items %}
+        <tr>
+            <td>{{ item.product.title }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

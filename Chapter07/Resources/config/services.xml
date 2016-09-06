@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!--<service id="foggyline_catalog.example" class="Foggyline\CatalogBundle\Example">-->
+            <!--<argument type="service" id="service_id" />-->
+            <!--<argument>plain_value</argument>-->
+            <!--<argument>%parameter_name%</argument>-->
+        <!--</service>-->
+
+        <service id="foggyline_catalog.image_uploader" class="Foggyline\CatalogBundle\Service\ImageUploader">
+            <argument>%foggyline_catalog_images_directory%</argument>
+        </service>
+
+        <service id="foggyline_catalog.category_menu" class="Foggyline\CatalogBundle\Service\Menu\Category">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="router" />
+        </service>
+
+        <service id="foggyline_catalog.onsale" class="Foggyline\CatalogBundle\Service\Menu\OnSale">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="router" />
+        </service>
+
+
+
+    </services>
+
+
+</container>

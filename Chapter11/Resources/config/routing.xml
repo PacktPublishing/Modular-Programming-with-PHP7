@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="foggyline_sales_cart" path="/cart/">
+        <default key="_controller">FoggylineSalesBundle:Cart:index</default>
+    </route>
+
+    <route id="foggyline_sales_cart_update" path="/cart/update">
+        <default key="_controller">FoggylineSalesBundle:Cart:update</default>
+    </route>
+
+    <route id="foggyline_sales_cart_add" path="/cart/add/{id}">
+        <default key="_controller">FoggylineSalesBundle:Cart:add</default>
+    </route>
+
+
+
+
+    <route id="foggyline_sales_checkout" path="/checkout/">
+        <default key="_controller">FoggylineSalesBundle:Checkout:index</default>
+    </route>
+
+    <route id="foggyline_sales_checkout_payment" path="/checkout/payment">
+        <default key="_controller">FoggylineSalesBundle:Checkout:payment</default>
+    </route>
+
+    <route id="foggyline_sales_checkout_process" path="/checkout/process">
+        <default key="_controller">FoggylineSalesBundle:Checkout:process</default>
+    </route>
+
+    <route id="foggyline_sales_checkout_success" path="/checkout/success">
+        <default key="_controller">FoggylineSalesBundle:Checkout:success</default>
+    </route>
+
+
+    <route id="foggyline_sales_order_cancel" path="/order/cancel/{id}">
+        <default key="_controller">FoggylineSalesBundle:SalesOrder:cancel</default>
+    </route>
+
+    <route id="foggyline_sales_order_print" path="/order/print/{id}">
+        <default key="_controller">FoggylineSalesBundle:SalesOrder:print</default>
+    </route>
+
+
+</routes>

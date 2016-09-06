@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>My Account</h1>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="medium-6 columns">
+            {{ form_row(form.email) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.plainPassword.first) }}
+            {{ form_row(form.plainPassword.second) }}
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.company) }}
+            {{ form_row(form.phoneNumber) }}
+        </div>
+        <div class="medium-6 columns">
+            {{ form_row(form.country) }}
+            {{ form_row(form.state) }}
+            {{ form_row(form.city) }}
+            {{ form_row(form.postcode) }}
+            {{ form_row(form.street) }}
+            <button type="submit">Save</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+
+    {% block customer_orders %}
+        <h2>My Orders</h2>
+        <div class="row">
+            <table>
+                <thead>
+                <tr>
+                    <th width="200">Order Id</th>
+                    <th>Date</th>
+                    <th width="150">Ship To</th>
+                    <th width="150">Order Total</th>
+                    <th width="150">Status</th>
+                    <th width="150">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in customer_orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.ship_to }}</td>
+                        <td>{{ order.order_total }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>
+                            <div class="small button-group">
+                                {% for action in order.actions %}
+                                    <a class="button" href="{{ action.path }}">{{ action.label }}</a>
+                                {% endfor %}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endblock %}
+
+{% endblock %}

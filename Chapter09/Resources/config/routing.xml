@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <!-- URL like http://shop.app/app_dev.php/payment/card/authorize -->
+    <route id="foggyline_payment_card_authorize" path="/card/authorize">
+        <default key="_controller">FoggylinePaymentBundle:Card:authorize</default>
+    </route>
+
+    <route id="foggyline_payment_card_capture" path="/card/capture">
+        <default key="_controller">FoggylinePaymentBundle:Card:capture</default>
+    </route>
+
+    <route id="foggyline_payment_card_cancel" path="/card/cancel">
+        <default key="_controller">FoggylinePaymentBundle:Card:cancel</default>
+    </route>
+
+    <!-- URL like http://shop.app/app_dev.php/payment/check_money/authorize -->
+    <route id="foggyline_payment_check_money_authorize" path="/check_money/authorize">
+        <default key="_controller">FoggylinePaymentBundle:CheckMoney:authorize</default>
+    </route>
+
+    <route id="foggyline_payment_check_money_capture" path="/check_money/capture">
+        <default key="_controller">FoggylinePaymentBundle:CheckMoney:capture</default>
+    </route>
+
+    <route id="foggyline_payment_check_money_cancel" path="/check_money/cancel">
+        <default key="_controller">FoggylinePaymentBundle:CheckMoney:cancel</default>
+    </route>
+
+</routes>

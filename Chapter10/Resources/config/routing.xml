@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <!-- URL like http://shop.app/app_dev.php/shipment/dynamic_rate/process -->
+    <route id="foggyline_shipment_dynamic_rate_process" path="/dynamic_rate/process">
+        <default key="_controller">FoggylineShipmentBundle:DynamicRate:process</default>
+    </route>
+
+    <!-- URL like http://shop.app/app_dev.php/shipment/flat_rate/process -->
+    <route id="foggyline_shipment_flat_rate_process" path="/flat_rate/process">
+        <default key="_controller">FoggylineShipmentBundle:FlatRate:process</default>
+    </route>
+
+</routes>

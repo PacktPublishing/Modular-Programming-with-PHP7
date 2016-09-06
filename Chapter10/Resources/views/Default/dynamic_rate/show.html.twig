@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>DynamicRate</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dynamicrate.id }}</td>
+            </tr>
+            <tr>
+                <th>DynamicRatetype</th>
+                <td>{{ dynamicrate.dynamicrateType }}</td>
+            </tr>
+            <tr>
+                <th>DynamicRatenumber</th>
+                <td>{{ dynamicrate.dynamicrateNumber }}</td>
+            </tr>
+            <tr>
+                <th>Expirydate</th>
+                <td>{% if dynamicrate.expiryDate %}{{ dynamicrate.expiryDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Securitycode</th>
+                <td>{{ dynamicrate.securityCode }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dynamic_rate_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('dynamic_rate_edit', { 'id': dynamicrate.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
