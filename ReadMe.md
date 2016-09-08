@@ -9,7 +9,7 @@ This step-by-step guide is divided into two sections.
 The first section explores all the fundamentals of modular design technique with respect to PHP 7.
 The latter section demonstrates the practical development of individual modules of a web shop application.
 
-Related PHP 7 Books and Videos
+##Related PHP 7 Books and Videos
 
 * [PHP 7 Programming Cookbook] (https://www.packtpub.com/application-development/php-7-programming-cookbook?utm_source=Github&utm_medium=Repository&utm_campaign=9781785883446)
 * [Learning PHP 7 [Video]] (https://www.packtpub.com/web-development/learning-php-7-video?utm_source=Github&utm_medium=Repository&utm_campaign=9781785883156)
