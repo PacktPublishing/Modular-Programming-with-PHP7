@@ -18,26 +18,26 @@ The latter section demonstrates the practical development of individual modules 
 ####Detailed installation steps (software-wise)
 Following console instructions apply on setting up PHP, Apache, MySQL.
 
-1. Install PHP 7
+* Install PHP 7
 ```
  $ sudo apt-get install python-software-properties
  $ sudo add-apt-repository ppa:ondrej/php
  $ sudo apt-get update
  $ sudo apt-get install -y php7.0
 ```
-2. Install Apache 2.4
+* Install Apache 2.4
 ```
  $ sudo add-apt-repository ppa:ondrej/apache2
  $ sudo apt-get update
  $ sudo apt-get install apache2
 ```
-3. Install MySQL 5.6 
+* Install MySQL 5.6 
 ```
  $ sudo add-apt-repository -y ppa:ondrej/mysql-5.6
  $ sudo apt-get update
  $ sudo apt-get install mysql-server-5.6
 ```
-4. Optionally install additional PHP modules
+* Optionally install additional PHP modules
 ```
  Search for all modules: $ sudo apt-cache search php7-*
  install specific ones: $ sudo apt-get install libapache2-mod-php7.0 php7.0-mysql php7.0-curl
