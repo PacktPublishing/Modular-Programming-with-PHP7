@@ -17,6 +17,7 @@ The latter section demonstrates the practical development of individual modules 
 
 ####Detailed installation steps (software-wise)
 Following console instructions apply on setting up PHP, Apache, MySQL.
+1. First ordered list item
 1. Install PHP 7
 ```
  $ sudo apt-get install python-software-properties
