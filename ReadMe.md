@@ -30,7 +30,7 @@ Following console instructions apply on setting up PHP, Apache, MySQL.
  $ sudo apt-get update
  $ sudo apt-get install apache2
 ```
-3. Install MySQL 5.6
+3. Install MySQL 5.6 
 ```
  $ sudo add-apt-repository -y ppa:ondrej/mysql-5.6
  $ sudo apt-get update
