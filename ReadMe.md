@@ -10,10 +10,10 @@ The first section explores all the fundamentals of modular design technique with
 The latter section demonstrates the practical development of individual modules of a web shop application.
 
 ###Software and Hardware:
-* (Apache 2.4 server) [https://httpd.apache.org/download.cgi]
-* (MySQL 5.6) [https://dev.mysql.com/downloads/mysql/]
-* (PHP 7) [http://php.net/downloads.php]
-* (VirtualBox) [https://www.virtualbox.org/]
+* [Apache 2.4 server](https://httpd.apache.org/download.cgi)
+* [MySQL 5.6] (https://dev.mysql.com/downloads/mysql/)
+* [PHP 7] (http://php.net/downloads.php)
+* [VirtualBox] (https://www.virtualbox.org/)
 
 ####Detailed installation steps (software-wise)
 Following console instructions apply on setting up PHP, Apache, MySQL.
